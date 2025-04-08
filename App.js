@@ -1,11 +1,11 @@
 // App.js
 import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import GuestLanding from './GuestLanding';
-import GuestOnboarding from './GuestOnboarding';
+import GuestLanding from './views/GuestLanding';
+import GuestOnboarding from './views/GuestOnboarding';
 import Login from './Login';
-import Register from './Register';
-import MainMenu from './MainMenu';
+import Register from './views/Register';
+import MainMenu from './views/MainMenu';
 
 export default function App() {
   const [page, setPage] = useState('landing');
