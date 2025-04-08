@@ -1,6 +1,5 @@
 
-🩺 DoctorSuite
-DoctorSuite is a modern and sleek mobile application built using React Native and Expo, designed to reimagine healthcare management—seamless, personalized, and intuitive.
+🩺 DoctorSuite is a modern and sleek mobile application built using React Native and Expo, designed to reimagine healthcare management—seamless, personalized, and intuitive.
 
 🚀 Features
 The project currently includes these key screens:
