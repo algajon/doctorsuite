@@ -1,93 +1,135 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { SafeAreaView, View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { Ionicons } from '@expo/vector-icons';
 
 const { width } = Dimensions.get('window');
 
-export default function MainMenu() {
-  const buttons = ['Home', 'Appointments', 'Messages', 'Profile'];
+const tabs = [
+  { label: 'Home', icon: 'home-outline' },
+  { label: 'Appointments', icon: 'calendar-outline' },
+  { label: 'Messages', icon: 'chatbubble-outline' },
+  { label: 'Profile', icon: 'person-outline' },
+];
+
+export default function MainMenu({ onNavigate }) {
+  const [activeTab, setActiveTab] = useState('Home');
 
   return (
+    
     <SafeAreaView style={styles.container}>
+      {/* Header */}
       <View style={styles.headerContainer}>
         <LinearGradient
           colors={['#6EE7B7', '#67E8F9', '#3B82F6']}
           style={styles.gradientLine}
         />
-        <Text style={styles.title}>Dashboard</Text>
-        <Text style={styles.subtitle}>
-          Welcome back! Explore your personalized healthcare dashboard.
-        </Text>
+        <Text style={styles.title}>{activeTab}</Text>
+        <Text style={styles.subtitle}>This is the {activeTab} section. (Content coming soon!)</Text>
       </View>
 
-      <View style={styles.bottomContainer}>
-        {buttons.map((btn, index) => (
-          <TouchableOpacity
-            key={index}
-            style={styles.menuButton}
-            activeOpacity={0.6}
-            onPress={() => {
-              // Placeholder for future navigation actions
-              console.log(`${btn} pressed`);
-            }}
-          >
-            <Text style={styles.menuButtonText}>{btn}</Text>
-          </TouchableOpacity>
-        ))}
+      {/* Spacer / Future content */}
+      <View style={{ flex: 1 }} />
+
+      {/* Sticky Bottom Nav */}
+      <View style={styles.navBar}>
+        {tabs.map((tab) => {
+          const isActive = activeTab === tab.label;
+          return (
+            <TouchableOpacity
+              key={tab.label}
+              style={styles.navItem}
+              onPress={() => {
+                setActiveTab(tab.label);
+                if (tab.label === 'Profile') {
+                  onNavigate('profile');
+                }
+              }}
+                          >
+              <Ionicons
+              name={tab.icon}
+              size={22}
+              color={isActive ? '#2563EB' : '#000000'}
+              />
+              <Text style={[styles.navLabel, isActive && styles.navLabelActive]}>
+                {tab.label}
+              </Text>
+            </TouchableOpacity>
+          );
+        })}
       </View>
     </SafeAreaView>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F9FAFB',
-    paddingHorizontal: 25,
-    paddingVertical: 30,
-    justifyContent: 'space-between',
   },
   headerContainer: {
-    marginTop: 20,
+    paddingHorizontal: 25,
+    paddingTop: 30,
   },
   gradientLine: {
-    width: width * 0.25,
-    height: 4,
-    borderRadius: 2,
-    marginBottom: 15,
+    width: '100%',
+    height: 5,
+    borderRadius: 0,
+    marginBottom: 20,
   },
   title: {
-    fontSize: 36,
+    fontSize: 30,
     fontWeight: '800',
     color: '#111827',
     letterSpacing: 1.2,
   },
   subtitle: {
-    fontSize: 17,
+    fontSize: 16,
     color: '#6B7280',
-    lineHeight: 24,
     marginTop: 10,
   },
-  bottomContainer: {
-    paddingBottom: 30,
+  navBarWrapper: {
+    width: '100%',
+    backgroundColor: '#E5E7EB',
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    paddingBottom: 12,
+    paddingTop: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: -2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 10,
   },
-  menuButton: {
-    backgroundColor: '#FFFFFF',
-    borderRadius: 20,
-    paddingVertical: 14,
+  navBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 12,
-    borderWidth: 1.5,
-    borderColor: '#3B82F6',
-    shadowColor: '#3B82F6',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 5,
-    elevation: 4,
+    marginHorizontal: 8,
+    borderRadius: 16,
+    overflow: 'hidden',
   },
-  menuButtonText: {
-    color: '#3B82F6',
-    fontWeight: '700',
-    fontSize: 16,
+  navItem: {
+    flex: 1,
+    paddingVertical: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#FFFFFF',
+  },
+  activeTab: {
+    backgroundColor: '#2563EB',
+  },
+  navLabel: {
+    fontSize: 13,
+    fontWeight: '600',
+    color: '#000000', // default black
+    marginTop: 4,
+  },
+  navLabelActive: {
+    color: '#2563EB',
+  },
+  
+  tabWithBorder: {
+    borderRightWidth: 0.5,
+    borderRightColor: '#D1D5DB',
   },
 });

@@ -1,12 +1,15 @@
 import React from 'react';
 import { SafeAreaView, View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+import { StatusBar } from 'expo-status-bar';
 
 const { width } = Dimensions.get('window');
 
 export default function GuestLanding({ onContinueAsGuest, onLogin, onSignUp }) {
   return (
     <SafeAreaView style={styles.container}>
+        <StatusBar style="light" translucent backgroundColor="transparent" />
+
       <View style={styles.headerContainer}>
         <LinearGradient
           colors={['#6EE7B7', '#67E8F9', '#3B82F6']}

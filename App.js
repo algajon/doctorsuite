@@ -6,12 +6,17 @@ import GuestOnboarding from './views/GuestOnboarding';
 import Login from './views/Login';
 import Register from './views/Register';
 import MainMenu from './views/MainMenu';
+import Profile from './views/Profile';
+import { StatusBar } from 'expo-status-bar';
 
 export default function App() {
+  
   const [page, setPage] = useState('landing');
 
   return (
+    
     <SafeAreaView style={styles.container}>
+      
       {page === 'landing' && (
         <GuestLanding
           onContinueAsGuest={() => setPage('onboarding')}
@@ -39,7 +44,9 @@ export default function App() {
         />
       )}
 
-      {page === 'MainMenu' && <MainMenu />}
+{page === 'MainMenu' && <MainMenu onNavigate={(screen) => setPage(screen)} />}
+{page === 'profile' && <Profile navigation={{ navigate: (screen) => setPage(screen) }} />}
+
     </SafeAreaView>
   );
 }

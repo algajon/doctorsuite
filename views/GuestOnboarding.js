@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
 import { AntDesign } from '@expo/vector-icons';
+import { StatusBar } from 'expo-status-bar';
 
 const steps = [
   "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
@@ -22,6 +23,7 @@ export default function GuestOnboarding({ onFinish }) {
 
   return (
     <View style={styles.container}>
+        <StatusBar style="light" translucent backgroundColor="transparent" />
       <View style={styles.imageContainer}>
       </View>
 

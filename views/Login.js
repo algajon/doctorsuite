@@ -1,10 +1,13 @@
 // Login.js
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 
 export default function Login({ onLogin, onNavigateToRegister }) {
   return (
     <SafeAreaView style={styles.container}>
+        <StatusBar style="light" translucent backgroundColor="transparent" />
+
       <View style={styles.content}>
         <Text style={styles.title}>Welcome Back!</Text>
 
