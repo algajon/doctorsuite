@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
 import GuestLanding from './views/GuestLanding';
 import GuestOnboarding from './views/GuestOnboarding';
-import Login from './Login';
+import Login from './views/Login';
 import Register from './views/Register';
 import MainMenu from './views/MainMenu';
 
