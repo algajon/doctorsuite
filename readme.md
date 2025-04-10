@@ -35,5 +35,4 @@ The project currently includes these key screens:
 
 ---
 
-##  Project Structure
 
