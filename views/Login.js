@@ -25,7 +25,7 @@ export default function Login({ onLogin, onNavigateToRegister }) {
         {/* Welcome Text */}
         <View style={{ marginTop: 20 }}>
   <AccentLine />
-  <Text style={styles.title}>You think I fucking care?</Text>
+  <Text style={styles.title}>Welcome back!</Text>
 </View>
 
         {/* Inputs */}
@@ -89,10 +89,10 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   title: {
-    fontSize: 30,
-    fontWeight: '800',
+    fontSize: 42,
+    fontWeight: '300',
     color: '#111827',
-    marginBottom: 6,
+    marginBottom: 48,
   },
   subtitle: {
     fontSize: 16,

@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import { SafeAreaView, View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { SafeAreaView, View, Text, TouchableOpacity, StyleSheet, Dimensions, FlatList } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
+import AccentLine from './components/AccentLine';
+import SearchBar from './components/SearchBar';
+import DashboardGrid from './components/DashboardGrid';
+import NearbyClinics from './components/NearbyClinics';
 
 const { width } = Dimensions.get('window');
 
@@ -16,18 +20,39 @@ export default function MainMenu({ onNavigate }) {
   const [activeTab, setActiveTab] = useState('Home');
 
   return (
-    
     <SafeAreaView style={styles.container}>
-      {/* Header */}
-      <View style={styles.headerContainer}>
-        <LinearGradient
-          colors={['#6EE7B7', '#67E8F9', '#3B82F6']}
-          style={styles.gradientLine}
-        />
-        <Text style={styles.title}>{activeTab}</Text>
-        <Text style={styles.subtitle}>This is the {activeTab} section. (Content coming soon!)</Text>
-      </View>
 
+      {/* Home Tab Content */}
+      {activeTab === 'Home' && (
+      <FlatList
+      data={[]} // no data needed — just use header
+      renderItem={null}
+      ListHeaderComponent={
+        <View style={styles.homeContainer}>
+          <Text style={styles.title}>Dashboard</Text>
+          <SearchBar placeholder="Search clinics..." />
+          <AccentLine />
+          <DashboardGrid onItemPress={(item) => console.log('Pressed:', item.label)} />
+          <NearbyClinics title="Nearby Clinics" />
+<NearbyClinics title="Suggested For You" />
+<NearbyClinics title="Recently Visited" />
+        </View>
+      }
+      keyExtractor={(_, i) => i.toString()}
+      showsVerticalScrollIndicator={false}
+    />
+      )}
+
+      {/* Other Tabs Placeholder */}
+      {activeTab !== 'Home' && (
+        <View style={styles.headerContainer}>
+          <View style={{ marginTop: 20 }}>
+            <AccentLine />
+          </View>
+          <Text style={styles.title}>{activeTab}</Text>
+          <Text style={styles.subtitle}>This is the {activeTab} section. (Content coming soon!)</Text>
+        </View>
+      )}
       {/* Spacer / Future content */}
       <View style={{ flex: 1 }} />
 
@@ -62,6 +87,10 @@ export default function MainMenu({ onNavigate }) {
   );
 }
 const styles = StyleSheet.create({
+  homeContainer: {
+    paddingHorizontal: 6,
+    paddingBottom: 100,
+  },
   container: {
     flex: 1,
     backgroundColor: '#F9FAFB',
@@ -78,6 +107,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 30,
+    paddingVertical: 3,
+    paddingTop: 48,
     fontWeight: '800',
     color: '#111827',
     letterSpacing: 1.2,
@@ -132,4 +163,5 @@ const styles = StyleSheet.create({
     borderRightWidth: 0.5,
     borderRightColor: '#D1D5DB',
   },
+  
 });
